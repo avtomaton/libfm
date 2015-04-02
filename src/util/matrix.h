@@ -264,7 +264,7 @@ template <typename T> class DVector {
    			}
    		}
    		void save(std::string filename) {
-		   	std::ofstream out_file (filename.c_str());
+			std::ofstream out_file (filename.c_str());
 			if (out_file.is_open())	{
 				for (uint i = 0; i < dim; i++) {
 					out_file << value[i] << std::endl;
@@ -272,8 +272,8 @@ template <typename T> class DVector {
 				out_file.close();
 			} else {
 				std::cout << "Unable to open file " << filename;
-			}   			
-   		}
+			}
+		}
 
 		void saveToBinaryFile(std::string filename) {
 		   	std::ofstream out (filename.c_str(), std::ios_base::out | std::ios_base::binary);

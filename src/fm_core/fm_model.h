@@ -59,10 +59,9 @@ class fm_model {
 		void init();
 		double predict(sparse_row<FM_FLOAT>& x);
 		double predict(sparse_row<FM_FLOAT>& x, DVector<double> &sum, DVector<double> &sum_sqr);
-	
+		void save(const std::string &filename);
+		void load(const std::string &filename);
 };
-
-
 
 fm_model::fm_model() {
 	num_factor = 0;
@@ -97,12 +96,12 @@ void fm_model::init() {
 }
 
 double fm_model::predict(sparse_row<FM_FLOAT>& x) {
-	return predict(x, m_sum, m_sum_sqr);		
+	return predict(x, m_sum, m_sum_sqr);
 }
 
 double fm_model::predict(sparse_row<FM_FLOAT>& x, DVector<double> &sum, DVector<double> &sum_sqr) {
 	double result = 0;
-	if (k0) {	
+	if (k0) {
 		result += w0;
 	}
 	if (k1) {
@@ -122,6 +121,22 @@ double fm_model::predict(sparse_row<FM_FLOAT>& x, DVector<double> &sum, DVector<
 		result += 0.5 * (sum(f)*sum(f) - sum_sqr(f));
 	}
 	return result;
+}
+
+void fm_model::save(const std::string &filename)
+{
+	FILE *f = fopen(filename.c_str(), "wb");
+	if (!f)
+		return;
+	fclose(f);
+}
+
+void fm_model::load(const std::string &filename)
+{
+	FILE *f = fopen(filename.c_str(), "rb");
+	if (!f)
+		return;
+	fclose(f);
 }
 
 #endif /*FM_MODEL_H_*/

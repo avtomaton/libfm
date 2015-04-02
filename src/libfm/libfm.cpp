@@ -233,15 +233,14 @@ int main(int argc, char **argv) {
 			fm.num_attribute = num_all_attribute;
 			fm.init_stdev = cmdline.getValue(param_init_stdev, 0.1);
 			// set the number of dimensions in the factorization
-			{ 
+			{
 				vector<int> dim = cmdline.getIntValues(param_dim);
 				assert(dim.size() == 3);
 				fm.k0 = dim[0] != 0;
 				fm.k1 = dim[1] != 0;
-				fm.num_factor = dim[2];					
-			}			
-			fm.init();		
-			
+				fm.num_factor = dim[2];
+			}
+			fm.init();
 		}
 
 		// (3) Setup the learning method:
@@ -384,17 +383,17 @@ int main(int argc, char **argv) {
 			rlog->init();
 		}
 		
-		if (cmdline.getValue(param_verbosity, 0) > 0) { 
-			fm.debug();			
-			fml->debug();			
+		if (cmdline.getValue(param_verbosity, 0) > 0) {
+			fm.debug();
+			fml->debug();
 		}	
 
-		// () learn		
+		// () learn
 		fml->learn(train, test);
 
 		// () Prediction at the end  (not for mcmc and als)
 		if (cmdline.getValue(param_method).compare("mcmc")) {
-			std::cout << "Final\t" << "Train=" << fml->evaluate(train) << "\tTest=" << fml->evaluate(test) << std::endl;	
+			std::cout << "Final\t" << "Train=" << fml->evaluate(train) << "\tTest=" << fml->evaluate(test) << std::endl;
 		}
 
 		// () Save prediction
@@ -402,9 +401,8 @@ int main(int argc, char **argv) {
 			DVector<double> pred;
 			pred.setSize(test.num_cases);
 			fml->predict(test, pred);
-			pred.save(cmdline.getValue(param_out));	
+			pred.save(cmdline.getValue(param_out));
 		}
-				 	
 
 	} catch (std::string &e) {
 		std::cerr << std::endl << "ERROR: " << e << std::endl;
