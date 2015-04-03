@@ -96,7 +96,7 @@ class Data {
 
 		DVector<RelationJoin> relation;
 		
-		void load(std::string filename);	
+		void load(std::string filename);
 		void debug();
 
 		void create_data_t();
@@ -203,7 +203,7 @@ void Data::load(std::string filename) {
 					pline += nchar;	
 					num_feature = std::max(_feature, num_feature);
 					has_feature = true;
-					num_values++;	
+					num_values++;
 				}
 				while ((*pline != 0) && ((*pline == ' ')  || (*pline == 9))) { pline++; } // skip trailing spaces
 				if ((*pline != 0)  && (*pline != '#')) { 
@@ -214,12 +214,15 @@ void Data::load(std::string filename) {
 			}
 		} 
 		fData.close();
-	}	
+	}
 
-	if (has_feature) {	
+	if (has_feature) {
 		num_feature++; // number of feature is bigger (by one) than the largest value
 	}
-	std::cout << "num_rows=" << num_rows << "\tnum_values=" << num_values << "\tnum_features=" << num_feature << "\tmin_target=" << min_target << "\tmax_target=" << max_target << std::endl;
+	std::cout << "num_rows=" << num_rows << "\tnum_values=" << num_values
+			  << "\tnum_features=" << num_feature
+			  << "\tmin_target=" << min_target << "\tmax_target=" << max_target
+			  << std::endl;
 	data.setSize(num_rows);
 	target.setSize(num_rows);
 	

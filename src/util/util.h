@@ -90,7 +90,7 @@ double getusertime4() {
 
 bool fileexists(std::string filename) {
 	std::ifstream in_file (filename.c_str());
-	return in_file.is_open();		
+	return in_file.is_open();
 }
 
 

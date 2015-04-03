@@ -124,7 +124,8 @@ int main(int argc, char **argv) {
 		} 
 
 		// (1) Load the data
-		std::cout << "Loading train...\t" << std::endl;
+		std::cout << "Loading train: '" << cmdline.getValue(param_train_file) <<
+					 "'...\n";
 		Data train(
 			cmdline.getValue(param_cache_size, 0),
 			! (!cmdline.getValue(param_method).compare("mcmc")), // no original data for mcmc
@@ -133,7 +134,8 @@ int main(int argc, char **argv) {
 		train.load(cmdline.getValue(param_train_file));
 		if (cmdline.getValue(param_verbosity, 0) > 0) { train.debug(); }
 
-		std::cout << "Loading test... \t" << std::endl;
+		std::cout << "Loading test: '" << cmdline.getValue(param_test_file) <<
+					 "'... \n";
 		Data test(
 			cmdline.getValue(param_cache_size, 0),
 			! (!cmdline.getValue(param_method).compare("mcmc")), // no original data for mcmc
@@ -375,7 +377,7 @@ int main(int argc, char **argv) {
 						fmlsgd->learn_rates(0) = lr[0];
 						fmlsgd->learn_rates(1) = lr[1];
 						fmlsgd->learn_rates(2) = lr[2];
-					}		
+					}
 				}
 			}
 		}

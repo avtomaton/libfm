@@ -58,7 +58,6 @@ class fm_learn_mcmc_simultaneous : public fm_learn_mcmc {
 			main_data(1) = &test;
 			main_cache(0) = cache;
 			main_cache(1) = cache_test;
-	
 
 			predict_data_and_write_to_eterms(main_data, main_cache);
 			if (task == TASK_REGRESSION) {
@@ -120,8 +119,6 @@ class fm_learn_mcmc_simultaneous : public fm_learn_mcmc {
 				// predict test and train
 				predict_data_and_write_to_eterms(main_data, main_cache);
 				// (prediction of train is not necessary but it increases numerical stability)
-			
-				
 
 
 				double acc_train = 0.0;

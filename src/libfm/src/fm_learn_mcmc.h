@@ -43,6 +43,12 @@
 
 #include <sstream>
 
+#include "Data.h"
+#include "fm_learn.h"
+#include "../../fm_core/fm_data.h"
+#include "../../util/matrix.h"
+#include "../../util/fmatrix.h"
+#include "../../util/smatrix.h"
 
 struct e_q_term {
 	double e;
@@ -337,16 +343,13 @@ class fm_learn_mcmc : public fm_learn {
 			}
 
 		}
-	public:
-		
-		
-
 
 	public:
 		virtual void predict(Data& data, DVector<double>& out) {
 			assert(data.num_cases == out.dim);
 			if (do_sample) {
 				assert(data.num_cases == pred_sum_all.dim);
+				std::cout << "prediction (sampling)\n";
 				for (uint i = 0; i < out.dim; i++) {
 					out(i) = pred_sum_all(i) / num_iter;
 				} 
