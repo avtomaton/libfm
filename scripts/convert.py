@@ -47,7 +47,7 @@ for cur_file_name in input_files:
     lines = [x.strip() for x in cur_file.read().splitlines() if x]
     if task.header:
         file_out.write(lines[0])
-        del line[0]
+        del lines[0]
     for line in lines:
         data = line.split(task.separator)
         if len(data) < int(task.target_column):
